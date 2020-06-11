@@ -650,7 +650,13 @@ Resources:
                             "Next": "ExecuteDeploymentAccountStateMachine",
                             "ResultPath": "$.error"
                         }],
-                        "TimeoutSeconds": 600
+                        "TimeoutSeconds": 600,
+                        "Retry": [{
+                            "ErrorEquals": ["ClientError"],
+                            "IntervalSeconds": 30,
+                            "MaxAttempts": 5,
+                            "BackoffRate": 2.0
+                        }]
                     },
                     "MovedToRootAction": {
                         "Type": "Task",
